@@ -13,6 +13,7 @@ require (
 	github.com/pion/webrtc/v3 v3.0.15
 	github.com/prometheus/client_golang v1.10.0
 	github.com/prometheus/client_model v0.2.0
+	github.com/refraction-networking/utls v0.0.0-20210713165636-0b2885c8c0d4 // indirect
 	github.com/smartystreets/goconvey v1.6.4
 	github.com/xtaci/kcp-go/v5 v5.5.12
 	github.com/xtaci/smux v1.5.12

@@ -155,7 +155,7 @@ func main() {
 
 	// Use potentially domain-fronting broker to rendezvous.
 	broker, err := sf.NewBrokerChannel(
-		*brokerURL, *frontDomain, sf.CreateBrokerTransport(),
+		*brokerURL, *frontDomain, sf.CreateUTLSBrokerTransport(),
 		*keepLocalAddresses || *oldKeepLocalAddresses)
 	if err != nil {
 		log.Fatalf("parsing broker URL: %v", err)

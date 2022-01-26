@@ -21,6 +21,7 @@ import (
 
 	"git.torproject.org/pluggable-transports/snowflake.git/common/nat"
 	"git.torproject.org/pluggable-transports/snowflake.git/common/util"
+	"git.torproject.org/pluggable-transports/snowflake.git/common/utls"
 	"github.com/pion/webrtc/v3"
 )
 
@@ -51,6 +52,18 @@ func CreateBrokerTransport() http.RoundTripper {
 	transport.Proxy = nil
 	transport.ResponseHeaderTimeout = 15 * time.Second
 	return transport
+}
+
+func CreateUTLSBrokerTransport() http.RoundTripper {
+	defaultTransport := http.DefaultTransport.(*http.Transport)
+	defaultTransport.Proxy = nil
+	defaultTransport.ResponseHeaderTimeout = 15 * time.Second
+	utlsTransport, err := utls.NewUTLSRoundTripper("hellofirefox_auto", nil, nil, defaultTransport)
+	if err != nil {
+		log.Fatalf("creating new utls round tripper: %v", err)
+	}
+
+	return utlsTransport
 }
 
 // Construct a new BrokerChannel, where:
